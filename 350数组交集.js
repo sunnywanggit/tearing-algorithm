@@ -18,9 +18,9 @@
 
 
 /**
- * @param {number[]} nums1
- * @param {number[]} nums2
- * @return {number[]}
+ * @description 求交集
+ * @param {Array} nums1 数组1
+ * @param {Array} nums2 数组2
  */
 let intersect = function (nums1, nums2) {
   let map1 = makeCountMap(nums1)
@@ -40,6 +40,10 @@ let intersect = function (nums1, nums2) {
   return res
 }
 
+/**
+ * @description 求 num -> count 的键值对
+ * @param {Array} nums 数组
+ */
 function makeCountMap(nums) {
   let map = new Map()
   for (let i = 0; i < nums.length; i++) {
