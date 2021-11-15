@@ -13,7 +13,10 @@ function binarySearch(arr, n, target) {
   let l = 0,r = n - 1;
   // 当 l === r 的时候，区间[l,r]依然是有效的，相当于是只有一个元素的区间
   while (l <= r) {
-    let mid = (l+r)/2;
+    // 这句代码有一个bug，就是当 l 和 r ，都很大的时候就回发生整型溢出的问题，
+    // 所以我们这里应该避免使用加法
+    // let mid = (l+r)/2;
+    let mid = l+(r-1)/2;
     if (arr[mid] === target) return mid;
     if (mid > target) {
       r = mid - 1;
