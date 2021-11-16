@@ -59,7 +59,6 @@ function moveZeros() {
       }
     }
   }
-  console.log(nums)
 }
 
 moveZeros();
