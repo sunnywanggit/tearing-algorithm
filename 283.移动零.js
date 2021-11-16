@@ -55,11 +55,11 @@ function moveZeros() {
         temp = nums[i];
         nums[i] = nums[k];
         nums[k] = temp;
-      } else {
-        k += 1;
+        k++;
       }
     }
   }
+  console.log(nums)
 }
 
 moveZeros();
