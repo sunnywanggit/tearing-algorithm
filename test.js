@@ -3,3 +3,6 @@ window.addEventListener('storage', (event) => {
 });
 
 localStorage.setItem('kk', 'kkkk');
+
+
+1111
