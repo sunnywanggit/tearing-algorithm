@@ -1,0 +1,29 @@
+{
+  "name": "tearing-algorithm",
+  "version": "1.0.0",
+  "description": "```js\r const arr = [1, 2, 3, 4]   \r ```\r 不过在算法题中，很多时候我们初始化一个数组时，并不知道它内部元素的情况。这种场景下，要给大家推荐的是构造函数创建数组的方法：",
+  "main": "16三数之和.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sunnywanggit/tearing-algorithm.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sunnywanggit/tearing-algorithm/issues"
+  },
+  "homepage": "https://github.com/sunnywanggit/tearing-algorithm#readme",
+  "devDependencies": {
+    "eslint": "^8.8.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-plugin-import": "^2.25.4"
+  },
+  "dependencies": {}
+}
