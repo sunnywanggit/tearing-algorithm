@@ -9,6 +9,7 @@
 const isObject = (obj) => typeof obj === 'object' && obj !== null;
 
 const deepClone = function (target) {
+  // 防止循环引用
   const map = new Map();
   if (!isObject(target)) return target;
 
@@ -32,4 +33,30 @@ const deepClone = function (target) {
   return clone(target);
 };
 
-console.log(deepClone('1'));
+const target = {
+  field1: 1,
+  field2: undefined,
+  field3: {
+    child: 'child',
+  },
+  field4: [2, 4, 8],
+  empty: null,
+  map: new Map(),
+  set: new Set(),
+  bool: new Boolean(true),
+  num: new Number(2),
+  str: new String(2),
+  symbol: Object(Symbol(1)),
+  date: new Date(),
+  reg: /\d+/,
+  error: new Error(),
+  func1: () => {
+    let t = 0;
+    console.log('coder', t++);
+  },
+  func2(a, b) {
+    return a + b;
+  },
+};
+
+console.log(deepClone(target));

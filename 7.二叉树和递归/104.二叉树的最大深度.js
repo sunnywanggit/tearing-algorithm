@@ -2,7 +2,7 @@
  * 题目：https://leetcode-cn.com/problems/maximum-depth-of-binary-tree/
  */
 
-var maxDepth = function (root) {
+const maxDepth = function (root) {
 	 if (!root) return 0;
 	 // 计算左右子树的最大深度
   const leftMax = maxDepth(root.left);

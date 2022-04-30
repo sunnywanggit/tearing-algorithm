@@ -7,14 +7,14 @@
  */
 
 const myInstanceof = (left, right) => {
-  if (typeof left !== 'object' || left === null) return false // 基础类型一律为 false
-  let proto = Object.getPrototypeOf(left) // 获取对象的原型
-  while(true) {
-    if (proto === null) return false
-    if (proto === right.prototype) return true
-    proto = Object.getPrototypeOf(proto)
+  if (typeof left !== 'object' || left === null) return false; // 基础类型一律为 false
+  let proto = Object.getPrototypeOf(left); // 获取对象的原型
+  while (true) {
+    if (proto === null) return false;
+    if (proto === right.prototype) return true;
+    proto = Object.getPrototypeOf(proto);
   }
-}
+};
 
 function Car(make, model, year) {
   this.make = make;
@@ -23,8 +23,8 @@ function Car(make, model, year) {
 }
 const auto = new Car('Honda', 'Accord', 1998);
 
-console.log(auto instanceof Car);
+console.log(myInstanceof(auto, Car));
 // expected output: true
 
-console.log(auto instanceof Object);
+// console.log(auto instanceof Object);
 // expected output: true

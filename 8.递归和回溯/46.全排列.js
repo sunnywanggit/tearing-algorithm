@@ -43,24 +43,26 @@
 //   return result;
 // };
 
+let used = []; // 用来存储已经用过的元素
+
 // nums 可以理解为[选择列表] choiceList
 const backtrack = (nums, track, result) => {
-  if (!nums.length) {
-    result.push(track);
-  } else {
-    for (let i = 0; i < nums.length; i += 1) {
-      // choice 过程
-      const n = nums[i]; // 用变量存起来，一会儿 unChoice 要用
-      track.push(n); // 加入决策路径的最后
-      nums.splice(i, 1); // 擦除这个选择
+  if (track.length === nums.length) {
+    result.push([...track]);
+    return;
+  }
+  for (let i = 0; i < nums.length; i += 1) {
+    if (used[i]) continue;
+    // choice 过程
+    track.push(nums[i]); // 加入决策路径的最后
+    used[i] = true; // choice 过程
 
-      // 进入下一步决策
-      backtrack(nums, track, result);
+    // 进入下一步决策
+    backtrack(nums, track, result);
 
-      // unChoice 过程
-      nums.splice(i, 0, n);
-      track.pop();
-    }
+    // unChoice 过程
+    used[i] = false;
+    track.pop();
   }
 };
 
@@ -69,6 +71,7 @@ const backtrack = (nums, track, result) => {
  * 题解：https://mp.weixin.qq.com/s/trILKSiN9EoS58pXmvUtUQ
  */
 const permute = function (nums) {
+  used = [];
   const result = [];
   const track = [];
   backtrack(nums, track, result);

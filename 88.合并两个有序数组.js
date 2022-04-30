@@ -2,9 +2,11 @@
  * 题目：https://leetcode-cn.com/problems/merge-sorted-array/
  */
 
-/**
- * @description 采用从后往前的方法来解决这个问题，注意 lm < 0 时的处理方式
+/*
+  采用从后往前的方法来解决这个问题，注意 lm < 0 时的处理方式
+  注意：根据题意可知 lm 的长度永远大于 ln 的长度
  */
+
 const merge = function (ms, m, ns, n) {
   let lm = m - 1;
   let ln = n - 1;

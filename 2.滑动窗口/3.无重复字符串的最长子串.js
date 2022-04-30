@@ -7,6 +7,7 @@
 /**
  * @description 滑动窗口
  */
+// todo
 const lengthOfLongestSubstring = (s) => {
   const freq = new Set();
   let L = 0;
@@ -14,7 +15,7 @@ const lengthOfLongestSubstring = (s) => {
   let maxLen = 0; // 我们找到的最长子串的长度
 
   while (L < s.length) {
-    // r + 1 < s.length 防止数组越界
+    // R + 1 < s.length 防止数组越界
     if (R + 1 < s.length && !freq.has(s[R + 1])) {
       R += 1;
       freq.add(s[R]);

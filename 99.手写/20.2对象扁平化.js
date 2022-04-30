@@ -1,0 +1,43 @@
+/*
+  题目：实现一个对象扁平化
+ */
+const obj = {
+  a: {
+    b: 1,
+    c: 2,
+    d: { e: 5 },
+  },
+  b: [1, 3, { a: 2, b: 3 }],
+  c: 3,
+};
+
+// todo 这个下来有空了想一下
+function isObject(val) {
+  return typeof val === 'object' && val !== null;
+}
+
+function flatten(obj) {
+  if (!isObject(obj)) {
+    return;
+  }
+  const res = {};
+  const dfs = (cur, prefix) => {
+    if (isObject(cur)) {
+      if (Array.isArray(cur)) {
+        cur.forEach((item, index) => {
+          dfs(item, `${prefix}[${index}]`);
+        });
+      } else {
+        for (const k in cur) {
+          dfs(cur[k], `${prefix}${prefix ? '.' : ''}${k}`);
+        }
+      }
+    } else {
+      res[prefix] = cur;
+    }
+  };
+  dfs(obj, '');
+
+  return res;
+}
+flatten();

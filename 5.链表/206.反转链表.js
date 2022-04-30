@@ -26,11 +26,11 @@
 
 /**
  * @description 使用递归来进行反转
- * todo 算法的思路没有问题，但是用例就是跑步过去，这个需要下来构建一下链表，然后本地跑一下
+ *
  */
-const reverse = function (head) {
+const reverseList = function (head) {
   if (!head || !head.next) return head;
-  const last = reverse(head.next);
+  const last = reverseList(head.next);
   head.next.next = head;
   head.next = null;
   return last;

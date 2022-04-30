@@ -3,7 +3,7 @@
  */
 
 const invertTree = function (root) {
-  if (root === null) return null;
+  if (!root) return null;
   [root.left, root.right] = [root.right, root.left];
   invertTree(root.left);
   invertTree(root.right);

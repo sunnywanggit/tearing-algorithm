@@ -8,15 +8,12 @@
 function debounce(fn, wait) {
   let timer;
   return function () {
-    const _this = this;
-    // eslint-disable-next-line prefer-rest-params
-    const args = arguments;
+    const _args = arguments;
     if (timer) {
       clearTimeout(timer);
-      timer = null;
     }
     timer = setTimeout(() => {
-      fn.apply(_this, args);
+      fn.apply(this, _args);
     }, wait);
   };
 }

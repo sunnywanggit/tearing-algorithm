@@ -3,6 +3,10 @@
  */
 
 let result = -Infinity;
+
+/**
+ * 题解：https://labuladong.gitee.io/algo/1/2/
+ */
 const maxPathSum = function (root) {
   if (!root) return 0;
   const left = Math.max(0, maxPathSum(root.left));
