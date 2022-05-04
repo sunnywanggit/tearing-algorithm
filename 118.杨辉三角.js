@@ -4,7 +4,6 @@
  * 公司：华为（君二）
  */
 
-// todo 需要思考一下，用动态规划的话应该怎么做
 const generate = function (numRows) {
   const result = [];
   result[0] = [1];
@@ -19,4 +18,4 @@ const generate = function (numRows) {
   return result;
 };
 
-console.log(generate(5));
+console.log(generate(10));
