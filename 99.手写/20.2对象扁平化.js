@@ -11,7 +11,6 @@ const obj = {
   c: 3,
 };
 
-// todo 这个下来有空了想一下
 function isObject(val) {
   return typeof val === 'object' && val !== null;
 }
@@ -40,4 +39,5 @@ function flatten(obj) {
 
   return res;
 }
-flatten();
+
+console.log(flatten(obj));

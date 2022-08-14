@@ -12,7 +12,6 @@ function fn4(x) {
   return x + 4;
 }
 
-// todo reduce 理解的还不是特别好
 function compose(...fn) {
   if (!fn.length) return (v) => v;
   if (fn.length === 1) return fn[0];

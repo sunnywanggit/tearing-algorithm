@@ -2,11 +2,9 @@
  * 题目：https://leetcode-cn.com/problems/maximum-length-of-repeated-subarray/
  */
 
-// todo
-
-/**
- * @description 暴力解法
- * 时间复杂度o(n3)
+/*
+  @description 暴力解法
+  时间复杂度o(n3)
  */
 // const findLength = function (nums1, nums2) {
 //   const len1 = nums1.length;
@@ -27,46 +25,40 @@
 //   return result;
 // };
 
-const maxLen = (num1, index1, num2, index2, len) => {
-  let result = 0;
-  let countNum = 0;
-  for (let i = 0; i < len; i += 1) {
-    if (num1[index1 + i] === num2[index2 + i]) {
-      countNum += 1;
-    } else if (countNum > 0) {
-      result = Math.max(result, countNum);
-      countNum = 0;
+const initArr = function (l1, l2) {
+  const arr = []; // 声明一维数组
+  for (let i = 0; i < l1; i += 1) {
+    arr[i] = []; // 声明二维数组
+    for (let j = 0; j < l2; j += 1) {
+      arr[i][j] = 0; // 数组初始化为0
     }
   }
-  return result;
+  return arr;
 };
 
-const helper = (nums1, nums2) => {
-  const len1 = nums1.length;
-  const len2 = nums2.length;
-  let result = 0;
-  // 进入时候的处理
-  for (let len = 1; len < len1; len += 1) {
-    const tempLen = maxLen(nums1, 0, nums2, len2 - len, len);
-    result = Math.max(result, tempLen);
-  }
-  // 中间过程的处理
-  for (let index2 = len2; index2 - len1 >= 0; index2 -= 1) {
-    const tempLen = maxLen(nums1, 0, nums2, index2 - len1, len1);
-    result = Math.max(result, tempLen);
-  }
-  // 出去时的处理
-  for (let len = len1; len > 0; len -= 1) {
-    const tempLen = maxLen(nums1, len1 - len, nums2, len);
-    result = Math.max(result, tempLen);
-  }
-};
-
-/**
- * @description 双指针解法
+/*
+  动态规划
  */
 const findLength = function (nums1, nums2) {
-  return nums1.length < nums2.length ? helper(nums1, nums2) : helper(nums2, nums1);
+  const n = nums1.length;
+  const m = nums2.length;
+  const dp = initArr(n + 1, m + 1);
+  let ans = 0;
+  for (let i = 0; i < n; i += 1) {
+    for (let j = 0; j < m; j += 1) {
+      if (nums1[i] === nums2[j]) {
+        if (i === 0 || j === 0) {
+          dp[i][j] = 1;
+        } else {
+          dp[i][j] = dp[i - 1][j - 1] + 1;
+        }
+      } else {
+        dp[i][j] = 0;
+      }
+      ans = Math.max(ans, dp[i][j]);
+    }
+  }
+  return ans;
 };
 
 const nums1 = [1, 2, 3, 2, 1];

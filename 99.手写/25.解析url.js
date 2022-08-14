@@ -23,29 +23,28 @@
 
 const url = 'http://www.domain.com/?user=anonymous&id=123&id=456&city=%E5%8C%97%E4%BA%AC&enabled';
 
-/**
- * @description 解法二
- */
-function parseQuery(url) {
-  const paramsStr = /.+\?(.+)$/.exec(url)[1]; // 将 ? 后面的字符串取出来
-  const paramsArr = paramsStr.split('&'); // 将字符串以 & 分割后存到数组中
-  const paramsObj = {};
-  // 将 params 存到对象中
-  paramsArr.forEach((param) => {
-    if (/=/.test(param)) { // 处理有 value 的参数
-      let [key, val] = param.split('='); // 分割 key 和 value
-      val = decodeURIComponent(val); // 解码
-      val = /^\d+$/.test(val) ? parseFloat(val) : val; // 判断是否转为数字
-      if (paramsObj.hasOwnProperty(key)) { // 如果对象有 key，则添加一个值
-        paramsObj[key] = [].concat(paramsObj[key], val);
-      } else { // 如果对象没有这个 key，创建 key 并设置值
-        paramsObj[key] = val;
+const parseQuery = (url) => {
+  const result = {};
+  const queryStr = url.slice(url.indexOf('?') + 1); // 取出 ？ 后面的字符串
+  if (!queryStr) return result;
+  const queryArr = queryStr.split('&'); // 将字符串以 & 为分隔符分割为数组
+  const len = queryArr.length;
+  for (let i = 0; i < len; i += 1) {
+    const pair = queryArr[i];
+    if (/=/.test(pair)) { // 处理有 value 的参数
+      const [key, val] = pair.split('='); // 分割 key 和 value
+      let value = decodeURIComponent(val); // 解码
+      value = /^\d+$/.test(value) ? parseFloat(value) : value; // 判断是否转为数字
+      if (result.hasOwnProperty(key)) { // 如果对象有 key 则添加一个值
+        result[key] = [].concat(result[key], value);
+      } else { // 如果对象没有key，则创建key并设置值
+        result[key] = value;
       }
     } else { // 处理没有 value 的参数
-      paramsObj[param] = true;
+      result[pair] = true;
     }
-  });
-  return paramsObj;
-}
+  }
+  return result;
+};
 
 console.log(parseQuery(url));

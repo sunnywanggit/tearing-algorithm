@@ -16,7 +16,6 @@ class EventEmitter {
   off(type, callBack) {
     if (!this.events[type]) return;
     this.events[type] = this.events[type].filter((item) => item !== callBack);
-    console.log(this.events[type]);
   }
 
   // 只执行一次订阅事件

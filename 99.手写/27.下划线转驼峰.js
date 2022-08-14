@@ -1,0 +1,3 @@
+function binary(nums) {
+
+}

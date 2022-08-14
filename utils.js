@@ -18,6 +18,6 @@ const initArr = function (l1, l2) {
 const isObj = (obj) => typeof obj === 'object' && obj !== null;
 
 module.exports = {
-  initArr,
   isObj,
+  initArr,
 };

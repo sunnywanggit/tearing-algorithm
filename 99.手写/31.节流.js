@@ -1,10 +1,10 @@
-function throttle(fun, time) {
-  let t1 = 0; // 初始时间
+function throttle(handler, wait) {
+  let lastTime = Date.now();
   return function () {
-    const t2 = new Date(); // 当前时间
-    if (t2 - t1 > time) {
-      fun.apply(this, arguments);
-      t1 = t2;
+    const nowTime = Date.now();
+    if (nowTime - lastTime > wait) {
+      handler.apply(this, arguments);
+      lastTime = nowTime;
     }
   };
 }
