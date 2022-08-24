@@ -1,3 +1,11 @@
+/**
+ * @description https://leetcode-cn.com/problems/sum-root-to-leaf-numbers/
+ * @param root
+ */
+
+/*
+  主要的思路：递归 + 回溯
+ */
 const sumNumbers = function (root) {
   let res = 0;
   let path = '';
