@@ -12,9 +12,15 @@ const deleteNode = function (root, key) {
   if (!root) return null;
 
   if (root.val === key) {
-    if (!root.left && !root.right) return root;
-    if (!root.right && root.left) root = root.left;
-    if (!root.left & root.right) root = root.right;
+    if (!root.right) return root.left;
+    if (!root.left) return root.right;
+    // 获取右子树的最小节点
+    const minNode = findMin(root.right);
+    root.right = deleteNode(root.right, minNode.val);
+    // 用右子树的最小节点替换 root 节点
+    minNode.left = root.left;
+    minNode.right = root.right;
+    root = minNode;
   } else if (root.val > key) {
     root.left = deleteNode(root.left, key);
   } else if (root.val < key) {
