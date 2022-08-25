@@ -3,24 +3,23 @@
  * 题解：https://leetcode-cn.com/problems/binary-tree-maximum-path-sum/solution/yi-pian-wen-zhang-jie-jue-suo-you-er-cha-kcb0/
  */
 
-// todo 我觉的我写的是没有问题的，但是测试用例就是通不过
-
-const result = [];
-
-const dfs = (root, path) => {
-  if (!root) return;
-  // eslint-disable-next-line no-param-reassign
-  path += root.val;
-  if (!root.left && !root.right) {
-    result.push(path);
-    // eslint-disable-next-line consistent-return
-    return;
-  }
-  dfs(root.left, `${path}->`);
-  dfs(root.right, `${path}->`);
-};
-
 const binaryTreePaths = function (root) {
-  dfs(root, '');
+  const result = [];
+
+  function traverse(root, path) {
+    if (!root) return;
+    // 前序位置，记录节点值
+    path.push(root.val);
+    if (!root.left && !root.right) {
+      result.push(path.slice().join('->'));
+    }
+    // 二叉树递归遍历框架，递归遍历左右子树
+    traverse(root.left, path);
+    traverse(root.right, path);
+    // 后续位置，撤销节点值
+    path.pop();
+  }
+
+  traverse(root, []);
   return result;
 };
