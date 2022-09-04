@@ -2,18 +2,14 @@
  *题目：https://leetcode-cn.com/problems/binary-tree-preorder-traversal/
  */
 
-// 递归解法
-let result = [];
-
-const dfs = (root) => {
-  if (!root) return;
-  result.push(root.val);
-  dfs(root.left);
-  dfs(root.right);
-};
-
 const preorderTraversal = function (root) {
-  result = [];
+  const result = [];
+  function dfs(root) {
+    if (!root) return;
+    result.push(root.val);
+    dfs(root.left);
+    dfs(root.right);
+  }
   dfs(root);
   return result;
 };

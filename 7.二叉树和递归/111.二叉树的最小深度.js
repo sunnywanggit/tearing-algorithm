@@ -21,6 +21,15 @@
 // };
 
 /**
+ * @description 深度优先搜索，这个是我自己想出来的解法，牛逼啊，哈哈哈
+ */
+const minDepth = function (root) {
+  if (!root) return 0;
+  if (!root.left || !root.right) return minDepth(root.left || root.right) + 1;
+  return Math.min(minDepth(root.left), minDepth(root.right)) + 1;
+};
+
+/**
  * @description 广度优先搜索
  */
 const minDepth = (root) => {

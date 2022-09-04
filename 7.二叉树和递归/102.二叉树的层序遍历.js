@@ -7,6 +7,9 @@
  * 题解：https://labuladong.gitee.io/algo/2/20/33/
  */
 
+/*
+  层序遍历需要维护一个队列，然后从上至下一层一层的遍历
+ */
 const levelOrder = function (root) {
   const result = [];
   if (!root) return result;
