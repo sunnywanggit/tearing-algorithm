@@ -1,26 +1,8 @@
-let used = [];
-
-const backtrack = (nums, track, result) => {
-  if (track.length === nums.length) {
-    result.push(track.join(''));
-    return;
+const rob = (nums) => {
+  const n = nums.length;
+  const dp = Array(nums.length + 2).fill(0);
+  for (let i = n - 1; i >= 0; i -= 1) {
+    dp[i] = Math.max(dp[i], nums[i] + dp[i - 2]);
   }
-  for (let i = 0; i < nums.length; i += 1) {
-    if (used[i]) continue;
-    track.push(nums[i]);
-    used[i] = true;
-    backtrack(nums, track, result);
-    used[i] = false;
-    track.pop();
-  }
+  return dp[0];
 };
-
-const permutation = (nums) => {
-  used = [];
-  const result = [];
-  const track = [];
-  backtrack(nums.split(''), track, result);
-  return [...new Set(result)];
-};
-
-console.log(permutation('aab'));
