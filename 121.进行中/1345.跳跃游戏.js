@@ -1,0 +1,3 @@
+const minJumps = function (arr) {
+
+};

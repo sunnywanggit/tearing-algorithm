@@ -8,10 +8,10 @@
  * 然后再根据交换律把相等的合并到一块儿进行异或（结果为0），然后再与只出现过一次的元素进行异或，
  * 这样最后的结果就是，只出现过一次的元素（0^任意值=任意值）
  */
-const singleNumber = function(nums) {
+const singleNumber = function (nums) {
   let ans = nums[0];
-  for(let i = 1; i < nums.length; i++) {
-    ans = ans ^ nums[i];
+  for (let i = 1; i < nums.length; i += 1) {
+    ans ^= nums[i];
   }
   return ans;
 };
@@ -32,7 +32,7 @@ const singleNumber2 = function (nums) {
     }
   }
 
-  for (let item of mySet) {
-    return  item;
+  for (const item of mySet) {
+    return item;
   }
-}
+};

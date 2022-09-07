@@ -28,20 +28,21 @@ const tree = [
 //   },
 // ];
 
-const treeToArr = (tree) => {
+function treeToArr(tree) {
   const result = [];
-  const xxx = (tree, result) => {
-    for (const item of tree) {
+  const len = tree.length;
+  if (!len) return result;
+  for (const item of tree) {
+    if (Array.isArray(item.children)) {
       const newItem = { ...item };
-      newItem.children && delete newItem.children;
+      delete newItem.children;
       result.push(newItem);
-      if (item.children) {
-        xxx(item.children, result);
-      }
+      result.push(...treeToArr(item.children));
+    } else {
+      result.push(item);
     }
-  };
-  xxx(tree, result);
+  }
   return result;
-};
+}
 
 console.log(treeToArr(tree));

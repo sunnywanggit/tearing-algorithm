@@ -17,6 +17,7 @@ const pathSum = function (root, targetSum) {
     dfs(root.left, targetSum, newPath);
     dfs(root.right, targetSum, newPath);
   };
+
   dfs(root, targetSum, []);
   return result;
 };

@@ -1,8 +1,19 @@
-const rob = (nums) => {
-  const n = nums.length;
-  const dp = Array(nums.length + 2).fill(0);
-  for (let i = n - 1; i >= 0; i -= 1) {
-    dp[i] = Math.max(dp[i], nums[i] + dp[i - 2]);
+const rob = function (nums) {
+  function robRange(nums, start, end) {
+    const memo = Array(nums.length).fill(-1);
+    function dp(nums, start) {
+      if (start > end) return 0;
+      if (memo[start] !== -1) return memo[start];
+      const res = Math.max(
+        dp(nums, start + 1, end),
+        nums[start] + dp(nums, start + 2, end),
+      );
+      memo[start] = res;
+      return res;
+    }
+    return dp(nums, start);
   }
-  return dp[0];
+  const len = nums.length;
+  if (len === 1) return nums[0];
+  return Math.max(robRange(nums, 1, len - 1), robRange(nums, 0, len - 2));
 };

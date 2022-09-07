@@ -5,7 +5,7 @@
  * @param fn
  * @param wait
  */
-function debounce(fn, wait) {
+function debounce(fn, wait = 300) {
   let timer;
   return function () {
     const _args = arguments;
