@@ -1,17 +1,22 @@
-const levelOrder = function (root) {
-  const result = [];
-  if (!root) return result;
-  const queue = [root];
-  while (queue.length) {
-    const len = queue.length;
-    const level = [];
-    for (let i = 0; i < len; i += 1) {
-      const currentNode = queue.shift();
-      level.push(currentNode.val);
-      if (currentNode.left) queue.push(currentNode.left);
-      if (currentNode.right) queue.push(currentNode.right);
-    }
-    result.push(level);
+// 动态规划
+const rob = function (nums) {
+  // 使用备忘录对重叠子问题进行优化
+  const memo = new Array(nums.length).fill(-1);
+
+  // 返回 nums[start..]能抢到的最大值
+  function dp(numbs, start) {
+    if (start >= numbs.length) return 0;
+    if (memo[start] !== -1) return memo[start];
+    const res = Math.max(
+      // 不强这家，去抢下家
+      dp(numbs, start + 1),
+      // 抢这家，然后继续抢下下家
+      nums[start] + dp(numbs, start + 2),
+    );
+    memo[start] = res;
+    return res;
   }
-  return result;
+
+  // 强盗从第0间房子开始抢劫
+  return dp(nums, 0);
 };
