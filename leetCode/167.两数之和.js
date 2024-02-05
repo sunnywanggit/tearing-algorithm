@@ -17,11 +17,11 @@
 /**
  * @description 解法一： 暴力解法
  */
-const twoSum1 = function(numbers, target) {
+const twoSum1 = function (numbers, target) {
   for (let i = 0; i < numbers.length; i++) {
     for (let j = i + 1; j < numbers.length; j++) {
-      if(numbers[i] + numbers[j] === target) {
-        return [i+1, j+1];
+      if (numbers[i] + numbers[j] === target) {
+        return [i + 1, j + 1];
         break;
       }
     }
@@ -32,54 +32,64 @@ const twoSum1 = function(numbers, target) {
  * @description 解法二：二分查找
  * 时间复杂度：O(nlogn)，其中 n 是数组的长度。需要遍历数组一次确定第一个数，时间复杂度是 O(n)O(n)，寻找第二个数使用二分查找，时间复杂度是 O(\log n)O(logn)，因此总时间复杂度是 O(n \log n)O(nlogn)。
  */
-const twoSum2 = function(numbers, target) {
+const twoSum2 = function (numbers, target) {
   for (let i = 0; i < numbers.length; i++) {
     let l = i + 1; // 为了避免重复寻找，在寻找第二个数时，只在第一个数的右侧寻找。
     let r = numbers.length - 1; // [l,r] 区间中查找
     while (l <= r) {
-      let mid = Math.floor((l+r)/2);
-      if(numbers[mid] + numbers[i] === target) {
-        return [i+1, mid+1];
+      const mid = Math.floor((l + r) / 2);
+      if (numbers[mid] + numbers[i] === target) {
+        return [i + 1, mid + 1];
       }
       if (numbers[mid] + numbers[i] > target) {
         r = mid - 1;
       }
-      if(numbers[mid] + numbers[i] < target) {
+      if (numbers[mid] + numbers[i] < target) {
         l = mid + 1;
       }
     }
   }
 };
 
-
 /**
  * @description 解法二：对撞指针
  * 时间复杂度： O(n)
  * 空间复杂度：O(1)
  */
-const twoSum3 = function(numbers, target) {
-  if (numbers.length < 2) return [-1,-1];
+const twoSum3 = function (nums, target) {
+  let p1 = 0;
+  let p2 = nums.length - 1;
 
-  let i = 0
-  let j = numbers.length - 1;
-  while(i < j) {
-    if (numbers[i] + numbers[j] === target) {
-      return [i+1, j+1]
+  while (p1 < p2) {
+    if (nums[p1] + nums[p2] === target) {
+      return [p1, p2];
     }
-    if(numbers[i] + numbers[j] > target) {
-      j--
-    }
-    if(numbers[i] + numbers[j] < target) {
-      i++
+    p2 -= 1;
+    if (p1 === p2) {
+      p1 += 1;
+      p2 = nums.length - 1;
     }
   }
-  // 边界值的考虑，如果没有解的话，就抛出 [-1,-1]
-  return [-1,-1];
 };
 
-const numbers = [2,7,11,15]
+/**
+ * 解法四：双指针
+ * @param 注意边界看条
+ */
+const twoSum4 = function (nums, target) {
+  let p1 = 0;
+  let p2 = p1 + 1;
+  while (p1 < nums.length) {
+    if (nums[p1] + nums[p2] === target) return [p1, p2];
+    p2 += 1;
+    if (p2 === nums.length) {
+      p1 += 1;
+      p2 = p1 + 1;
+    }
+  }
+};
+
+const numbers = [2, 7, 11, 15];
 const target = 9;
 
-console.log(twoSum3(numbers, target))
-
-
+console.log(twoSum3(numbers, target));

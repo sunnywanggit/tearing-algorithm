@@ -21,6 +21,7 @@ module.exports = {
     'guard-for-in': 0,
     'no-restricted-syntax': 0,
     'no-continue': 0,
+    'prefer-const': 0,
   },
 
 };

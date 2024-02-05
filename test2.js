@@ -1,12 +1,3 @@
-/**
- * 题目：https://leetcode-cn.com/problems/4sum/
- *
- * 题解：https://leetcode-cn.com/problems/4sum/solution/ji-bai-9994de-yong-hu-you-dai-ma-you-zhu-shi-by-yo/
- *
- */
-
-// 其实就是在三数之和的基础上进行处理而已，没啥其他的东西了
-
 let twoSumTarget = function (nums, start, target) {
   const res = [];
   nums.sort((a, b) => a - b);
